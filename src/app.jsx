@@ -1,14 +1,22 @@
 import styles from './index.scss';
 import React from 'react';
-
+import { Router, Route, Link, browserHistory } from 'react-router';
+import Login from './login';
+import List from './list';
+import Main from './main';
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>It Works!</h1>
-        <p>This React project just works including <span className={styles.redBg}>module</span> local styles.</p>
-        <p>Enjoy!</p>
+        <header>paytm header!!</header>
+        <Router history={browserHistory}>
+           <Route path="/" component={Main}>
+            <Route path="login" component={Login}/>
+            <Route path="list" component={List}/> 
+           </Route>
+        </Router>
+        <footer>footer!!</footer>
       </div>
-    )
+      )
   }
 }

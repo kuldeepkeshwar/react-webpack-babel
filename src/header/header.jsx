@@ -1,9 +1,9 @@
 import React from 'react';
-export default class Login extends React.Component {
+export default class Header extends React.Component {
   render() {
     return (
       <div>
-        <p>login page!!</p>
+        <p>Header</p>
       </div>
       )
   }

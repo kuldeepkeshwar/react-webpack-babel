@@ -1,10 +1,10 @@
 import React from 'react';
 export default class DashBoard extends React.Component {
-  render({children}) {
+  render() {
     return (
       <div>
         <p>DashBoard page!!</p>
-        <p>{children}</p>
+        {this.props.children}
       </div>
     )
   }

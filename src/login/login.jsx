@@ -16,13 +16,19 @@ class Loginform extends React.Component {
   }
   render() {
     return (
-        <form onSubmit={this.hanldeSubmit}>
-          <label>User Name</label>
-          <input type="text" name="username"/>
-          <label>Password</label>
-          <input type="text" name="pwd"/>
-          <input type="submit" value="Login"/>
-        </form>
+      <section className="login-container">
+        <div className="logo align-center">
+          <img src="/static/images/pt-logo.png" alt=""/>
+        </div>
+        <div className="login-content">
+          <form onSubmit={this.hanldeSubmit}>
+            <input type="text" placeholder="Username" className="form-field"/>
+            <input type="password" placeholder="Password" className="form-field"/>
+            <input type="submit" value="Submit" className="button"/>
+            <a href="" className="forgot-password">Forgot password?</a>
+          </form>
+        </div>
+      </section>
       )
   }
 }
@@ -30,10 +36,7 @@ class Loginform extends React.Component {
 export default class Login extends React.Component {
   render() {
     return (
-      <div>
-        <p>Please login</p>
-        <Loginform/>
-      </div>
+       <Loginform/>
       )
   }
 }

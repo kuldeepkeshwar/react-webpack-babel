@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header/header';
+//import Header from '../header/header';
 //import Footer from '../footer/footer';
 
 export default class Container extends React.Component {
@@ -9,7 +9,6 @@ export default class Container extends React.Component {
   render() {    
     return (
       <div>
-        <Header/>
         {this.props.children}
       </div>
       )

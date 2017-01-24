@@ -1,0 +1,249 @@
+@import "./../_variable.scss";
+
+
+// box sizing
+@mixin box-sizing($border-box) {
+  -webkit-box-sizing: $border-box;
+     -moz-box-sizing: $border-box;
+          box-sizing: $border-box;
+}
+
+
+// transform mixin
+@mixin transform($transform) {
+	   -moz-transform: $transform;
+	     -o-transform: $transform;
+	    -ms-transform: $transform;
+	-webkit-transform: $transform;
+          transform: $transform;
+}
+
+
+// border radius
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+
+// grid mixin
+
+%clearfix {
+    *zoom: 1;
+    &:before, 
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.row {
+    @extend %clearfix;
+}
+
+[class*='grid-'] {
+	float: left;
+	padding: 0 10px;
+	width: 100%;
+	min-height: 1px;
+	@include box-sizing(border-box); 
+} 
+
+@for $i from 1 through 12 {
+	.grid-#{$i} { 
+		width: 100% / 12 * $i;
+	}
+}
+
+// grid mixin
+
+
+// dropdown
+.dropdown{
+	display: inline-block;
+	position: relative;
+	&.open{
+		.dropdown-menu{
+			display: block;
+		}	
+	}
+	a{
+		@include box-sizing(border-box);
+		color: $base-black;
+	}
+	.dropdown-link{
+		position: relative;
+		display: block;
+		padding: 10px 5px;
+	}
+	.dropdown-menu{
+		display: none;
+		position: absolute;
+		border: solid 1px $border-color;
+		background: $white;
+		min-width: 150px;
+		right: 0;
+		li{
+			border-bottom: solid 1px $border-color;
+			&:last-child{
+				border-bottom: 0;
+			}
+		}
+		a{	
+			display: block;
+			padding: 7px 15px;
+		}
+	}
+}
+
+.dropdown-arrow{
+	display: inline-block;
+	position: relative;
+	width: 12px;
+	height: 7px;
+	&:after,&:before{
+		position: absolute;
+		content: "";
+		height: 1px;
+		width: 7px;
+		background: $base-black;
+	}
+	&:after{
+		@include transform(rotate(40deg));
+	}
+	&:before{
+		@include transform(rotate(-40deg));
+		right: 0px;
+	}
+}
+
+
+// input select 
+.form-field{
+	@include box-sizing(border-box);
+	border: solid 1px $border-color;
+	background: $white;
+	width: 100%;
+	outline: none;
+	padding: 0 10px;
+	height: 35px;
+	&:focus{
+		border-color: $base-color;
+	}
+	&.small{
+		height: 30px;
+	}	
+}
+
+
+//  button
+.button{
+	padding: 0 20px;
+	height: 35px;
+	text-align: center;
+	border: solid 1px $second-color;
+	color: $white;
+	cursor: pointer;
+	background: $second-color;
+	&.outline{
+		background: $white;
+		color: $second-color;
+		border-color: $second-color;	
+	} 
+}
+
+
+
+// panel
+.panel{
+	margin-bottom: 15px;
+	padding: 20px;
+	background: $white;
+	border: solid 1px $border-color;
+}
+
+
+// table
+.table{
+	background: $white;
+	width: 100%;
+	tr th{
+		background: $light-color;
+		font-weight: 600;
+		padding: 10px 7px;
+	}
+	th,td{
+		border: solid 1px $border-color;
+		padding: 7px;
+		font-size: 13px;
+		color: $dark-grey;
+	}
+}
+
+
+// modal box
+.modal-container{
+	position: absolute;
+	@include box-sizing(border-box);
+	padding: 70px 50px 50px;
+	display: none;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	&.open{
+		display: block;
+	}
+	.overlay{
+		position: absolute;
+		background: rgba(0, 0, 0, 0.2);
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	.modal{
+		position: relative;
+		border-radius: 2px;
+		box-shadow: 0px 0px 4px rgba(0,0,0,0.2);	
+		background: $white;
+		border: solid 1px $border-color;
+		z-index: 2;
+		.modal-head{
+			border-bottom: solid 1px $border-color;
+			padding: 15px 20px;
+			h3{
+				font-size: 17px;
+				font-weight: 600;
+			}
+		}
+		.modal-content{
+			padding: 20px;
+		}
+		&.small{
+			margin: auto;
+			max-width: 700px;
+		}
+		.close{
+			position: absolute;
+		    right: -1px;
+		    top: -1px;
+		    padding: 0;
+		    font-size: 21px;
+		    font-weight: 400;
+		    height: 30px;
+		    line-height: 30px;
+		    width: 30px;
+		    text-align: center;
+		    cursor: pointer;
+		    background: $second-color;
+		    color: $white;
+		}
+	}
+}

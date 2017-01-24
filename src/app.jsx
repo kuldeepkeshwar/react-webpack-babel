@@ -22,7 +22,6 @@ export default class App extends React.Component {
       homePage=<IndexRoute  component={Login}/>
     }
     return (
-      <div>
         <Router history={browserHistory}>
            <Route path="/" component={Container}>
             {homePage}
@@ -32,7 +31,6 @@ export default class App extends React.Component {
             </Route>
            </Route>
         </Router>
-      </div>
       )
   }
 }

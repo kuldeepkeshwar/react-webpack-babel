@@ -45,7 +45,7 @@ export default class AccountStatus extends React.Component {
                       <input type="file" className="form-field"/>
                       <div className="file-uploader">
                         <span className="file-name">File upload</span>
-                        <img src="images/attachment.svg" className="icon" alt=""/>
+                        <img src="/static/images/attachment.svg" className="icon" alt=""/>
                       </div>
                     </div>
                   </div>

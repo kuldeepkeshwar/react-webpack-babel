@@ -5,6 +5,8 @@ var loaders = require('./webpack.loaders');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 /*
 // local css modules
 loaders.push({
@@ -62,6 +64,9 @@ module.exports = {
 		new ExtractTextPlugin('[contenthash].css', {
 			allChunks: true
 		}),
+		new CopyWebpackPlugin([
+			{ from: 'static', to: 'static' },
+		]),
 		new HtmlWebpackPlugin({
 			template: './src/template.html',
 			title: 'Webpack App'

@@ -4,6 +4,7 @@ var path = require('path');
 var loaders = require('./webpack.loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const HOST = process.env.HOST || "127.0.0.1";
 const PORT = process.env.PORT || "8888";
@@ -77,6 +78,9 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new DashboardPlugin(),
+		new CopyWebpackPlugin([
+			{ from: 'static', to: 'static' },
+		]),
 		new HtmlWebpackPlugin({
 			template: './src/template.html'
 		}),

@@ -147,7 +147,6 @@ summary {
 body,html{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
-	height: 100%;
 	background: $light-color;
 }
 
@@ -199,6 +198,10 @@ a{
 		float: right;
 		.dropdown-link{
 			padding: 12px 20px 12px 10px;
+			max-width: 175px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 		.username{
 			margin-right: 5px;

@@ -243,6 +243,10 @@ a{
 	li{
 		&.open{
 			border-bottom: 0;
+			.dropdown-arrow{
+				@include transform(rotate(0deg));
+				top: 11px;
+			}
 			ul{
 				display: block;
 			}
@@ -271,8 +275,10 @@ a{
 		}
 	}
 	.dropdown-arrow{
+		@include transition(300ms all);
+		@include transform(rotate(-90deg));
 		float: right;
-		top: 11px;
+		top: 9px;
 	}
 }
 

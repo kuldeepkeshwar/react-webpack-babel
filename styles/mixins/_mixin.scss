@@ -19,13 +19,21 @@
 }
 
 
+@mixin transition($transition...) {
+	  -moz-transition: $transition;
+		-o-transition: $transition;
+	   -ms-transition: $transition;
+   -webkit-transition: $transition;
+	       transition: $transition;
+}
+
 // border radius
 @mixin border-radius($radius) {
-  border-radius: $radius;
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  -o-border-radius: $radius;
+   -moz-border-radius: $radius;
+     -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+-webkit-border-radius: $radius;
+        border-radius: $radius;
 }
 
 

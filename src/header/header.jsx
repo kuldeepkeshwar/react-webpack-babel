@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 export default class Header extends React.Component {
   render() {
     return (
@@ -7,7 +8,7 @@ export default class Header extends React.Component {
             <div className="row">
               <div className="grid-4">
                 <div className="logo">
-                  <img src="/static/images/pt-logo.png" alt=""/>
+                  <img src="/static/images/pt-logo.png" alt="logo"/>
                 </div>
               </div>
               <div className="grid-8">
@@ -16,7 +17,7 @@ export default class Header extends React.Component {
                     <span className="username">Rg</span> Ravinder gupta <span className="dropdown-arrow"></span>
                   </a>
                   <ul className="dropdown-menu">
-                    <li><a href="">Logout</a></li>
+                    <li><Link to="/logout">Logout</Link></li>
                   </ul>
                 </div>
               </div>

@@ -3,8 +3,8 @@ import React from 'react';
 //import Footer from '../footer/footer';
 
 export default class Container extends React.Component {
-  constructor(){
-    super();
+  constructor(props, context){
+    super(props, context);
   }
   render() {    
     return (

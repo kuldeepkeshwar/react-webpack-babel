@@ -1,78 +1,47 @@
 import React from 'react';
-const menus=[{
-  label:'Account Opening',
-  open:true,
-  children:[{
-    label:'Account Opening Status',
-    path:'/dashboard/account-status'
-  },{
-    label:'KYC',
-    path:'/dashboard/account-status'
-  },{
-    label:'Account',
-    path:'/dashboard/account-status'
-  }]
-},{
-  label:'Account Opening',
-  open:false,
-  children:[{
-    label:'Account Opening Status',
-    path:'/dashboard/account-status'
-  },{
-    label:'KYC',
-    path:'/dashboard/account-status'
-  },{
-    label:'Account opening ',
-    path:'/dashboard/account-status'
-  },{
-    label:'Account',
-    path:'/dashboard/account-status'
-  }]
-},{
-  label:'Account Opening',
-  open:false,
-  children:[{
-    label:'Account Opening Status',
-    path:'/dashboard/account-status'
-  },{
-    label:'KYC',
-    path:'/dashboard/account-status'
-  },{
-    label:'Account opening ',
-    path:'/dashboard/account-status'
-  },{
-    label:'Account',
-    path:'/dashboard/account-status'
-  }]
-}];
-function renderSubMenu(menus){
-  return menus.map((menu,i)=>{
-    return <li key={i}><a href="{menu.path}">{menu.label}</a></li>
+import { Router, Route, Link } from 'react-router'
+import { getMenu } from './../services/menu';
+function renderSubMenu(menus) {
+  return menus.map((menu, i) => {
+    return <li key={i}>
+      <Link to={menu.path}>{menu.label}</Link>
+    </li>
   })
 }
-function renderMenu(menus){
-  return menus.map((menu,i)=>{
-      let className=(menu.open)?'open':'';
-      return (<li key={i} className={className}>
+function renderMenu(menus) {
+  return menus.map((menu, i) => {
+    let className = (menu.open) ? 'open' : '';
+    return (
+      <li key={i} className={className}>
         <a href="javascript:void(0);">{menu.label} <span className="dropdown-arrow"></span></a>
         <ul>
           {renderSubMenu(menu.children)}
         </ul>
-      </li>)
+      </li>
+    )
   });
 }
 export default class LeftPanel extends React.Component {
-  constructor(){
-      super();
-  }  
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      menus: []
+    }
+  }
+  componentDidMount() {
+    getMenu().then(items => this.setState({
+      menus: items
+    }));
+  }
   render() {
-    const _menus=renderMenu(menus);
+    console.log(this);
+    const _menus = renderMenu(this.state.menus);
     return (
       <aside className="left-menu">
-      <ul className="side-bar">
-        {_menus}
-      </ul>
-    </aside>
+        <ul className="side-bar">
+          {_menus}
+        </ul>
+      </aside>
     )
   }
 }

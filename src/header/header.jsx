@@ -1,7 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Auth from './../utils/auth';
 export default class Header extends React.Component {
+  constructor(props, context){
+    super(props, context);
+    this.state={
+      user:{}
+    };
+  }
+  componentDidMount(){
+    Auth.getUser().then(_user=>this.setState({user:_user}));
+  }
   render() {
+    
     return (
         <header className="header">
           <div className="container">
@@ -14,7 +25,7 @@ export default class Header extends React.Component {
               <div className="grid-8">
                 <div className="dropdown user-dropdown ">
                   <a href="" className="dropdown-link">
-                    <span className="username">Rg</span> Ravinder gupta <span className="dropdown-arrow"></span>
+                    <span className="username">{this.state.user.shortForm}</span> {this.state.user.name }<span className="dropdown-arrow"></span>
                   </a>
                   <ul className="dropdown-menu">
                     <li><Link to="/logout">Logout</Link></li>

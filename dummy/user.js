@@ -1,4 +1,4 @@
 const fakeUser={
-  id:101,userName:'Test User'
+  id:101,name:'Test User',shortForm:'TU'
 }
 export default fakeUser;

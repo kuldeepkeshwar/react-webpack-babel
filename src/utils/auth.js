@@ -26,6 +26,9 @@ const Auth={
     },
     loggedIn() {
         return !!Cookies.get(TOKEN)
+    },
+    getUser(){
+        return getUser(Cookies.get(TOKEN));
     }
 };
 export default Auth;

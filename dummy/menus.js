@@ -5,8 +5,8 @@ const fakeMenus=[{
     label:'Account Opening Status',
     path:'/dashboard/account-status'
   },{
-    label:'KYC',
-    path:'/dashboard/account-status'
+    label:'Dashboard',
+    path:'/dashboard'
   },{
     label:'Account',
     path:'/dashboard/account-status'

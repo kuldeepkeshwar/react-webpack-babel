@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { Router, Route, Link } from 'react-router'
 import { getMenu } from './../services/menu';
 import { isThenable } from './../utils/function';
+
 function renderSubMenu(menus) {
   return menus.map((menu, i) => {
     return <li key={i}>
@@ -10,78 +10,40 @@ function renderSubMenu(menus) {
     </li>
   })
 }
-
-function renderMenu(menus) {
-  let _m = menus.map((menu, i) => {
-    //let className = (menu.open) ? 'open' : '';
-    return (
-      <Panel key={i} activeClass="open" open={() => (menu.open) ? 'open' : ''}>
-        <li key={i} >
-          <a href="javascript:void(0);">{menu.label} <span className="dropdown-arrow"></span></a>
-          <ul>
-            {renderSubMenu(menu.children)}
-          </ul>
-        </li>
-      </Panel>
-    )
-  });
-  return <Accordion>
-    {_m}
-  </Accordion>;
-  return menus.map((menu, i) => {
-    //let className = (menu.open) ? 'open' : '';
-    return (
-      <Panel key={i} activeClass="open" open={() => (menu.open) ? 'open' : ''}>
-        <li key={i} >
-          <a href="javascript:void(0);">{menu.label} <span className="dropdown-arrow"></span></a>
-          <ul>
-            {renderSubMenu(menu.children)}
-          </ul>
-        </li>
-      </Panel>
-    )
-  });
-}
 const Panel = React.createClass({
   propTypes: {
     children: React.PropTypes.element.isRequired,
     activeClass: React.PropTypes.string,
-    open: React.PropTypes.func
+    beforeOpen: React.PropTypes.func
+  },
+  getInitialState: function() {
+      return({
+          //className:'',
+          handlers: {}
+      });
   },
   render: function () {
-    let _panel=this;
-    let children=React.Children.map(this.props.children, (child, index) => {
-      return React.cloneElement(child, {
-        onClick: function(){ 
-          console.log(this);
-          
-        }.bind(child)
-      });
-    });
-    //console.log(this.props.children);
-    return (children[0]);
+    let props =Object.assign({
+      className:this.props.children.props.className.trim()+' '+this.state.className
+    },this.state.handlers);
+    return( React.cloneElement( this.props.children, props ) );
   },
-  // componentDidMount: function () {
-  //   console.log(this);
-  //   React.Children.forEach(this.props.children, (child, index) => {
-  //     if (child.open) {
-  //       if(isThenable(child.open)){
-  //         child.open().then(()=>{
-  //           //
-  //         })
-  //       }else if (child.open()){
-
-  //       }
-  //     } else {
-  //       //add default
-  //     }
-  //   });
-  // },
-  componentWillUnmount: function () {
-    //this.element.off( "mousemove", this.handleMousemove );
+  componentDidMount: function() {
+      this.setState({
+        className:this.props.activeClass,
+        handlers: {
+            onClick: this.handleClick
+        }
+      });
   },
   handleClick: function (event) {
-
+    let cls='';
+    if(this.state.className.indexOf(this.props.activeClass)==-1){//closed
+      cls=this.props.activeClass;
+    }
+    this.setState({
+        className:cls
+    })
   }
 })
 const Accordion = React.createClass({
@@ -115,17 +77,15 @@ export default class LeftPanel extends React.Component {
     }));
   }
   render() {
-    const _menus = renderMenu(this.state.menus);
     return (
       <aside className="left-menu">
-
         <Accordion panels={this.state.menus}>
           <ul className="side-bar">
             {this.state.menus.map((menu, i) => {
               //let className = (menu.open) ? 'open' : '';
               return (
                 <Panel key={i} activeClass="open">
-                  <li key={i} >
+                  <li key={i} className="test">
                     <a href="javascript:void(0);">{menu.label} <span className="dropdown-arrow"></span></a>
                     <ul>
                       {renderSubMenu(menu.children)}
